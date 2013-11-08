@@ -45,6 +45,9 @@ body {
 	background: black;
 	-webkit-transform: scale(-1, 1);
 }
+#get-png {
+	background: #99cccc;
+}
 		</style>
 	</head>
 	<body>
@@ -58,6 +61,8 @@ body {
 			<button data-img='fawkes.png'>Fawkes</button>
 			<button data-img='alex.png'>Alex</button>
 			<button data-img='zero.png'>Zero</button>
+			<button data-img='jenn.png'>Skull</button>
+			<button id="get-png">[get png]</button>
 		</div>
 
 		<p id="info">Please allow access to your camera!</p>
@@ -197,7 +202,13 @@ App.init = function() {
 
 	function buttonClick() {
 		var img = this.getAttribute('data-img');
-		App.img.src = 'img/' + img;
+		if ( !img ) {
+			var savedPNG = App.canvas.toDataURL("image/png");
+			window.open(savedPNG,'_blank');
+		}
+		else {
+			App.img.src = 'img/' + img;
+		}
 	}
 
 	for( var i = 0; i < buttons.length; i++ ) {
